@@ -25,7 +25,10 @@ module.exports = {
   module: {
     rules: [{
       test: /\.css$/i,
-      use: [MiniCssExtractPlugin.loader, "css-loader"],
+      use: [MiniCssExtractPlugin.loader, "css-loader"], //use是从右到左转换的
+    }, {
+      test: /\.(png|svg|jpg|jpeg|gif)$/i,
+      type: 'asset/resource',
     }, ],
   },
 }
