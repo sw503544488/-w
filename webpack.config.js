@@ -1,5 +1,7 @@
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var path = require('path')
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+
 module.exports = {
   mode: 'development', //开发中使用development 会加很多注释, 发布的就改成production
   entry: './src/index.js', //输入
@@ -15,11 +17,15 @@ module.exports = {
     title: 'frank',
     filename: 'index1.html',
     template: 'src/assets/index.html' //用test.html这个模版生成html
+  }), new MiniCssExtractPlugin({
+    filename: '[name].[contenthash].css',
+    chunkFilename: '[id].[contenthash].css',
+    ignoreOrder: false
   })],
   module: {
     rules: [{
       test: /\.css$/i,
-      use: ["style-loader", "css-loader"],
+      use: [MiniCssExtractPlugin.loader, "css-loader"],
     }, ],
   },
 }
